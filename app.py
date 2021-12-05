@@ -25,8 +25,13 @@ def write_result(keyword, location, count):
     writer = csv.writer(open('results.csv', mode='a', newline=''),
                         delimiter=',', quotechar='"')
 
+    # TODO: include date in result file
     writer.writerow([keyword, location, count])
 
 
 # Run Application
 main()
+
+# TODO: separate result CSV's for each tracked keyword
+# TODO: automate script at set time daily
+# TODO: graphing and data analysis options

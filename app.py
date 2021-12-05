@@ -2,16 +2,19 @@ import requests
 from bs4 import BeautifulSoup
 
 
+def get_url(search_term, location):
+    return f'https://www.indeed.com/jobs?q={search_term}&l={location}%2C%20TX&fromage=1'
+
+
 def load_page(url):
     page_raw = requests.get(url)
     page = BeautifulSoup(page_raw.content, 'html.parser')
     return page
 
 
-# url = 'https://www.indeed.com/jobs?q=Python&l=Austin%2C%20TX&fromage=1&vjk=299205b85bc7fd35'
-
-
-bs_page = load_page(
-    'https://www.indeed.com/jobs?q=Python&l=Austin%2C%20TX&fromage=1&vjk=299205b85bc7fd35')
+# Run Application
+url = get_url('Javascript', 'Austin')
+print(url)
+bs_page = load_page(url)
 result = bs_page.find_all('div', id="searchCountPages")
 print(result)

@@ -1,20 +1,21 @@
-import requests
-from bs4 import BeautifulSoup
+from page_crawler import get_url, load_page
 
 
-def get_url(search_term, location):
-    return f'https://www.indeed.com/jobs?q={search_term}&l={location}%2C%20TX&fromage=1'
+def main():
+    url = get_url('Javascript', 'Austin')
+    bs_page = load_page(url)
+    job_count = parse_result(bs_page)
+
+    print(job_count)
 
 
-def load_page(url):
-    page_raw = requests.get(url)
-    page = BeautifulSoup(page_raw.content, 'html.parser')
-    return page
+# Return job count as an integer
+def parse_result(page):
+    result_loc = page.find_all('div', id="searchCountPages")
+    result_str = str(result_loc[0])
+    count = result_str[58:-11]
+    return int(count)
 
 
 # Run Application
-url = get_url('Javascript', 'Austin')
-print(url)
-bs_page = load_page(url)
-result = bs_page.find_all('div', id="searchCountPages")
-print(result)
+main()

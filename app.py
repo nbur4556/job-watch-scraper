@@ -1,5 +1,6 @@
 from page_crawler import get_url, load_page
 import csv
+import datetime
 
 
 def main():
@@ -9,6 +10,8 @@ def main():
     url = get_url(keyword, location)
     bs_page = load_page(url)
     job_count = parse_result(bs_page)
+
+    print(job_count)
 
     write_result(keyword, location, job_count)
 
@@ -22,11 +25,12 @@ def parse_result(page):
 
 
 def write_result(keyword, location, count):
+    dt = datetime.datetime.now()
     writer = csv.writer(open('results/results.csv', mode='a', newline=''),
                         delimiter=',', quotechar='"')
 
     # TODO: include date in result file
-    writer.writerow([keyword, location, count])
+    writer.writerow([dt.date(), dt.time(), keyword, location, count])
 
 
 # Run Application

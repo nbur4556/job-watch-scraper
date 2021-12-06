@@ -1,3 +1,4 @@
+import re
 import requests
 from bs4 import BeautifulSoup
 
@@ -13,7 +14,8 @@ class Page_Crawler:
 
     # Return job count as an integer
     def parse_result(self):
-        result_loc = self.page.find_all('div', id="searchCountPages")
-        result_str = str(result_loc[0])
-        count = result_str[58:-11]
+        match = re.search(r'([Pp]age\s1\sof\s[0-9]*\sjobs)', str(self.page))
+
+        print(match)
+        print(match.group())
         return int(count)

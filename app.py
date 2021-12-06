@@ -7,7 +7,8 @@ def main():
     keyword = input('Enter search keyword: ')
     location = input('Enter search location: ')
 
-    indeed_crawler = Page_Crawler(keyword, location)
+    indeed_crawler = Page_Crawler(
+        keyword, location, exp=r'([Pp]age\s1\sof\s[0-9]*\sjobs)', trim_start=10, trim_end=5)
     indeed_crawler.load_page()
     job_count = indeed_crawler.parse_result()
 

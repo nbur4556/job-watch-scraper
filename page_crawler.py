@@ -4,11 +4,11 @@ from bs4 import BeautifulSoup
 
 
 class Page_Crawler:
-    def __init__(self, search_term, location):
+    def __init__(self, search_term, location, exp, trim_start, trim_end):
         self.url = f'https://www.indeed.com/jobs?q={search_term}&l={location}%2C%20TX&fromage=1'
-        self.expression = r'([Pp]age\s1\sof\s[0-9]*\sjobs)'
-        self.trim_start = 10
-        self.trim_end = 5
+        self.exp = exp
+        self.trim_start = trim_start
+        self.trim_end = trim_end
 
     def load_page(self):
         page_raw = requests.get(self.url)
@@ -17,6 +17,6 @@ class Page_Crawler:
 
     # Return job count as an integer
     def parse_result(self):
-        match = re.search(self.expression, str(self.page))
+        match = re.search(self.exp, str(self.page))
         count = int(match.group()[self.trim_start:-self.trim_end])
         return count

@@ -9,4 +9,11 @@ class Page_Crawler:
     def load_page(self):
         page_raw = requests.get(self.url)
         page = BeautifulSoup(page_raw.content, 'html.parser')
-        return page
+        self.page = page
+
+    # Return job count as an integer
+    def parse_result(self):
+        result_loc = self.page.find_all('div', id="searchCountPages")
+        result_str = str(result_loc[0])
+        count = result_str[58:-11]
+        return int(count)

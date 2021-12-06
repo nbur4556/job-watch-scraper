@@ -29,7 +29,6 @@ def write_result(keyword, location, count):
     writer = csv.writer(open('results/results.csv', mode='a', newline=''),
                         delimiter=',', quotechar='"')
 
-    # TODO: include date in result file
     writer.writerow([dt.date(), dt.time(), keyword, location, count])
 
 

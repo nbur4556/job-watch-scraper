@@ -1,4 +1,4 @@
-from page_crawler import get_url, load_page
+from page_crawler import Page_Crawler
 import csv
 import datetime
 
@@ -7,11 +7,9 @@ def main():
     keyword = input('Enter search keyword: ')
     location = input('Enter search location: ')
 
-    url = get_url(keyword, location)
-    bs_page = load_page(url)
-    # job_count = parse_result(bs_page)
-
-    print(job_count)
+    indeed_crawler = Page_Crawler(keyword, location)
+    indeed_crawler.load_page()
+    job_count = indeed_crawler.parse_result()
 
     write_result(keyword, location, job_count)
 

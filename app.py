@@ -11,7 +11,7 @@ def main():
     indeed_crawler.load_page()
     job_count = indeed_crawler.parse_result()
 
-    # write_result(keyword, location, job_count)
+    write_result(keyword, location, job_count)
 
 
 def write_result(keyword, location, count):

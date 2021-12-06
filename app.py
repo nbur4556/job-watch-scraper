@@ -3,8 +3,8 @@ import csv
 
 
 def main():
-    keyword = 'Javascript'
-    location = 'Austin'
+    keyword = input('Enter search keyword: ')
+    location = input('Enter search location: ')
 
     url = get_url(keyword, location)
     bs_page = load_page(url)
@@ -22,7 +22,7 @@ def parse_result(page):
 
 
 def write_result(keyword, location, count):
-    writer = csv.writer(open('results.csv', mode='a', newline=''),
+    writer = csv.writer(open('results/results.csv', mode='a', newline=''),
                         delimiter=',', quotechar='"')
 
     # TODO: include date in result file

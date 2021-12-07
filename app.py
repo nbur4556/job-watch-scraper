@@ -17,7 +17,7 @@ def main():
 
 def write_result(keyword, location, count):
     dt = datetime.datetime.now()
-    writer = csv.writer(open('results/results.csv', mode='a', newline=''),
+    writer = csv.writer(open(f'results/{keyword}_{location}.csv', mode='a', newline=''),
                         delimiter=',', quotechar='"')
 
     writer.writerow([dt.date(), dt.time(), keyword, location, count])

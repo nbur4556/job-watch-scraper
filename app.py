@@ -27,4 +27,3 @@ def write_result(keyword, location, count):
 main()
 
 # TODO: automate script at set time daily
-# TODO: graphing and data analysis options

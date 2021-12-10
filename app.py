@@ -26,6 +26,5 @@ def write_result(keyword, location, count):
 # Run Application
 main()
 
-# TODO: separate result CSV's for each tracked keyword
 # TODO: automate script at set time daily
 # TODO: graphing and data analysis options
